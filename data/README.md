@@ -39,7 +39,7 @@ The raw files are not stored in this repository.
 | `InvoiceDate` | Date and time | When the invoice was created | 83 invoices have more than one timestamp. |
 | `Price` | Decimal | Unit price in pounds sterling | 6,207 lines have a price of zero or less. |
 | `Customer ID` | Integer | Customer number | 243,007 blanks. Read by pandas as a decimal because of the blanks. |
-| `Country` | Text | Customer's country | 13 customers have more than one country. |
+| `Country` | Text | Country of the order | Every invoice has exactly one country. 13 customers have more than one country across their invoices. |
 
 ## Data Quality Summary
 
@@ -52,6 +52,22 @@ The raw files are not stored in this repository.
 | Price of zero or less | 6,207 |
 | Exact duplicate rows | 34,335 |
 | Lines with no Customer ID | 243,007 |
+| Invoices | 53,628 |
+| Invoices with no customer | 8,752 |
 | Invoices with more than one customer | 0 |
+| Invoices with more than one country | 0 |
 
 The handling of each issue is recorded in `docs/DECISIONS.md`.
+
+## Database Contents
+
+The load script `src/02_load_sqlite.py` builds `data/retail.db`. After the first load the tables hold the following rows.
+
+| Table | Rows | Notes |
+|---|---|---|
+| `customers` | 5,942 | One row per customer ID |
+| `products` | 5,305 | 355 products have no description. Every line for these stock codes was blank. |
+| `invoices` | 53,628 | 8,752 have no customer (D3) |
+| `invoice_lines` | 1,033,036 | 34,335 exact duplicates removed (D2) |
+
+Total revenue across all lines is £18,855,533.70. This figure includes cancellations and adjustments. It matches the total calculated in pandas.

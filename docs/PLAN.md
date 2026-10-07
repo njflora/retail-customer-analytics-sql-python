@@ -52,9 +52,9 @@ Online Retail II from the UCI Machine Learning Repository. It holds 1,067,371 in
 3. Profile the data in `notebooks/00_first_look.ipynb`.
 4. Record the design decisions in `docs/DECISIONS.md`.
 
-### Phase 2: Database Build
+### Phase 2: Database Build (in progress)
 
-5. Write the schema in `sql/01_schema.sql`. There are four tables: `customers`, `products`, `invoices` and `invoice_lines`.
+5. Write the schema in `sql/01_schema.sql`. There are four tables: `customers`, `products`, `invoices` and `invoice_lines`. Country is stored on `invoices` (see D8).
 6. Write the load script `src/02_load_sqlite.py`. It applies decisions D2 to D6.
 7. Validate the load. Row counts and revenue totals must match the CSV.
 8. Create the `sales_clean` view in `sql/02_views.sql`. This applies decision D1.

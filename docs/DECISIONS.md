@@ -17,9 +17,11 @@ This log records each design decision, the finding behind it and the reason for 
 | Price of zero or less | 6,207 |
 | No Customer ID | 243,007 |
 
-**Decision:** These rows are loaded into the database. A view named `sales_clean` excludes them. The analysis reads from the view.
+**Decision:** These rows are loaded into the database. A view named `sales_clean` holds only valid sales. It excludes cancellations, quantities of zero or less and prices of zero or less. The analysis reads from the view.
 
 **Reason:** The cleaning rules stay visible in SQL. They can be changed without reloading the data. Revenue totals can still be checked against the source.
+
+**Revised 7 October 2026:** The first version also excluded rows with no customer. This contradicted D3, because revenue totals built from the view would lose 22.8% of lines. The view now keeps valid sales with or without a customer. The RFM and cohort queries add `WHERE customer_id IS NOT NULL` themselves.
 
 ---
 
@@ -104,3 +106,38 @@ This log records each design decision, the finding behind it and the reason for 
 **Decision:** Category analysis is out of scope.
 
 **Reason:** Building categories from product descriptions would need manual rules. That work would not add SQL or Python evidence in proportion to the time it takes.
+
+---
+
+## D8. Store country on the invoice
+
+**Date agreed:** 7 October 2026
+
+**Finding:** Every one of the 53,628 invoices has exactly one country. However, 8,752 invoices have no customer (see D3). If country were stored only on `customers`, these invoices would have no country in the database.
+
+**Decision:** `invoices` has its own `country` column. It holds the country of every invoice. `customers.country` holds each customer's main country, chosen by the rule in D4.
+
+**Reason:** Country is a property of each order. Storing it on the invoice keeps revenue by country complete. The customer-level country is still available for the RFM analysis.
+
+---
+
+## D9. Exclude stock codes that are not products
+
+**Date agreed:** 7 October 2026
+
+**Finding:** A query on stock codes that do not start with five digits found codes for postage, manual entries, fees and tests. The D1 filters do not remove them. For example, £151,778 of manual entries and £124,648 of postage would pass the filters for known customers. Some codes also carry large negative amounts, such as Amazon fees (minus £221,521) and bad debt adjustments (minus £147,614).
+
+The same query also explained an undocumented invoice prefix. Six invoices start with "A". All of them use stock code `B`, "Adjust bad debt". They are accounting entries, not sales.
+
+**Decision:** The `sales_clean` view excludes the following 16 codes.
+
+| Group | Codes |
+|---|---|
+| Postage and carriage | `POST`, `DOT`, `C2`, `C3` |
+| Manual entries, adjustments and discounts | `M`, `m`, `D`, `S`, `B`, `ADJUST`, `ADJUST2` |
+| Fees and charges | `AMAZONFEE`, `BANK CHARGES`, `CRUK` |
+| Test entries | `TEST001`, `TEST002` |
+
+Codes with an unusual format that are real products stay in. These include `DCGS...` items, `gift_0001_...` vouchers, `SP1002` and `PADS`.
+
+**Reason:** RFM measures what customers spend on products. Postage, fees and adjustments would distort each customer's monetary value. Excluding code `B` also removes all six "A" invoices.
