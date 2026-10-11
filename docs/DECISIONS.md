@@ -171,6 +171,8 @@ Codes with an unusual format that are real products stay in. These include `DCGS
 
 **Limitation:** Some customers in the early 2010 cohorts may also be existing customers who did not order in December 2009. Their effect is smaller and cannot be separated in this data.
 
+**Revised 11 October 2026:** The first heatmap showed a pale final cell in almost every row. Each of these cells was December 2011, which holds only nine days of data. The heatmap now also excludes all activity in December 2011. The cumulative return curve (Chart 6) is affected only at month 12 of the December 2010 cohort. This is noted as a limitation.
+
 ---
 
 ## D12. RFM segment rules
