@@ -13,6 +13,7 @@ All notable changes to this project are recorded here. The newest entries are at
 - `notebooks/01_analysis.ipynb`. Reads the SQL files through SQLAlchemy. Builds all six charts and the segment summary table.
 - `sql/05_cohorts.sql` Q2. Each customer's first return month, for the cumulative return curve.
 - Written narrative added to `notebooks/01_analysis.ipynb`: question, method, a note on each chart, findings, recommendations and limitations.
+- `README.md`. The project front page: question, findings, charts, method, SQL techniques, data source, limitations and steps to reproduce.
 
 ### Results
 - F2: the top 20% of customers produce 77.2% of revenue. Hypothesis 1 is supported.
