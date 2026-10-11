@@ -8,10 +8,14 @@ All notable changes to this project are recorded here. The newest entries are at
 - `sql/02_views.sql` is now built by the load script. The load prints a check of the view: 1,003,434 lines and £19,645,617.81.
 - `sql/03_overview.sql`. Headline figures, monthly revenue and revenue concentration. First use of CTEs and window functions.
 - `docs/FINDINGS.md`. A log of results against the working hypothesis.
+- `sql/04_rfm.sql`. Recency, frequency and monetary value per customer, scored 1 to 5 with `NTILE(5)`.
 
 ### Results
 - F2: the top 20% of customers produce 77.2% of revenue. Hypothesis 1 is supported.
 - F3: 72.4% of customers placed two or more orders. Hypothesis 2 is challenged, pending the cohort analysis.
+
+### Decisions
+- D10 added. It records the RFM reference date, scoring direction and tie-break rules.
 
 ## 2026-10-07
 

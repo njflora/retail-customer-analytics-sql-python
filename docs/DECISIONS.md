@@ -141,3 +141,18 @@ The same query also explained an undocumented invoice prefix. Six invoices start
 Codes with an unusual format that are real products stay in. These include `DCGS...` items, `gift_0001_...` vouchers, `SP1002` and `PADS`.
 
 **Reason:** RFM measures what customers spend on products. Postage, fees and adjustments would distort each customer's monetary value. Excluding code `B` also removes all six "A" invoices.
+
+---
+
+## D10. RFM scoring rules
+
+**Date agreed:** 11 October 2026
+
+**Decision:**
+- Recency is measured from a reference date of 10 December 2011. This is the day after the last transaction. The query calculates it from the data.
+- Frequency is the number of distinct invoices. Monetary value is the total of `line_total`.
+- Each measure is scored from 1 to 5 with `NTILE(5)`. A score of 5 is always the best.
+- Ties are broken by a second sort column. Recency ties are broken by frequency. Frequency ties are broken by monetary value.
+- Only customers with a Customer ID are scored (D3).
+
+**Reason:** The reference date keeps recency in the timeline of the data. Using the current date would not change the scores, because every customer would shift by the same amount. However, the recency values themselves would be meaningless. The tie-break matters because about 1,600 customers placed exactly one order. Without it, NTILE would split them across scores 1 and 2 in an arbitrary order.
