@@ -10,15 +10,18 @@ All notable changes to this project are recorded here. The newest entries are at
 - `docs/FINDINGS.md`. A log of results against the working hypothesis.
 - `sql/04_rfm.sql`. Recency, frequency and monetary value per customer, scored 1 to 5 with `NTILE(5)`.
 - `sql/05_cohorts.sql`. Monthly cohort retention, using `MIN() OVER (PARTITION BY customer_id)` for each customer's first month.
+- `notebooks/01_analysis.ipynb`. Reads the SQL files through SQLAlchemy. Builds Charts 1 to 4 and the segment summary table.
 
 ### Results
 - F2: the top 20% of customers produce 77.2% of revenue. Hypothesis 1 is supported.
 - F3: 72.4% of customers placed two or more orders. Hypothesis 2 is challenged, pending the cohort analysis.
 - F4 to F8 added from the cohort analysis. Hypothesis 2 is not supported. Customers return in seasonal cycles. Hypothesis 3 is supported.
+- F9 added. The At Risk segment holds £1.68 million of past spend from customers who have stopped ordering.
 
 ### Decisions
 - D10 added. It records the RFM reference date, scoring direction and tie-break rules.
 - D11 added. The December 2009 and December 2011 cohorts are excluded from retention averages and the heatmap.
+- D12 added. It defines the six RFM segments.
 
 ### Changed
 - `docs/MOCKUP.md`: Chart 6 changed from an average retention curve to a cumulative return curve. The monthly measure understated loyalty (see F4 and F5). Chart 5 now notes the cohorts excluded by D11.

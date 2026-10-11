@@ -170,3 +170,24 @@ Codes with an unusual format that are real products stay in. These include `DCGS
 **Reason:** The December 2009 cohort describes existing customers, not new ones. Including it would overstate retention. The December 2011 cohort is too small and too short to measure.
 
 **Limitation:** Some customers in the early 2010 cohorts may also be existing customers who did not order in December 2009. Their effect is smaller and cannot be separated in this data.
+
+---
+
+## D12. RFM segment rules
+
+**Date agreed:** 11 October 2026
+
+**Decision:** Each customer is placed in one of six segments using their recency (R) and frequency (F) scores. The rules are checked in order. A customer takes the first segment that fits.
+
+| Order | Segment | Rule |
+|---|---|---|
+| 1 | Champions | R of 4 or more and F of 4 or more |
+| 2 | Loyal | R of 3 or more and F of 3 or more |
+| 3 | New or Promising | R of 4 or more |
+| 4 | Needs Attention | R of 3 |
+| 5 | At Risk | F of 3 or more |
+| 6 | Lost | All remaining customers |
+
+Every combination of R and F falls into exactly one segment.
+
+**Reason:** Segments based on recency and frequency are a common approach in retail. Monetary value is reported for each segment but is not used to assign it. In this data, frequency and spend rise together. Using both would largely count the same behaviour twice. Simple rules are also easy to explain to a business audience.

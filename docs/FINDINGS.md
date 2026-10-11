@@ -87,3 +87,22 @@ The average order value is high for an online gift shop. This supports the view 
 3,288 customers made their first order between January and November 2010. The same months in 2011 show 1,509. This is a fall of 54%.
 
 **Caveat:** part of this fall is an artefact. Some early 2010 "new" customers were existing customers (see D11). The real fall is smaller than 54%, but its size cannot be measured from this data.
+
+---
+
+## F9. The At Risk segment holds the most value that is slipping away
+
+**Source:** `notebooks/01_analysis.ipynb` and `output/rfm_segment_summary.csv`. Segments follow D12.
+
+| Segment | Customers | % of customers | % of revenue | Average spend | Average days since last order |
+|---|---|---|---|---|---|
+| Champions | 1,476 | 25.2% | 69.6% | £8,051 | 20 |
+| Loyal | 1,219 | 20.8% | 15.4% | £2,162 | 77 |
+| New or Promising | 436 | 7.5% | 1.0% | £390 | 27 |
+| Needs Attention | 379 | 6.5% | 1.0% | £431 | 107 |
+| At Risk | 815 | 13.9% | 9.8% | £2,060 | 365 |
+| Lost | 1,527 | 26.1% | 3.2% | £352 | 456 |
+
+Champions are a quarter of customers but produce 70% of revenue. Lost customers are the largest group, but they spent an average of only £352 each.
+
+At Risk customers spent an average of £2,060 each. This is almost the same as Loyal customers and six times the Lost average. However, their last order was a year ago on average. Together they spent £1.68 million. This segment is the clearest target for retention effort. Its customers have shown high value and have stopped recently enough to be won back.
