@@ -4,6 +4,17 @@ All notable changes to this project are recorded here. The newest entries are at
 
 ## 2026-10-11
 
+### Reviewed
+A full review was carried out before the first push to GitHub. It found no bugs or inconsistencies.
+- The schema in `sql/01_schema.sql` was checked for key and foreign key integrity.
+- The load logic in `src/02_load_sqlite.py` was checked against decisions D1 to D9. This covered duplicate removal, the tie-break rules for country and description, the Customer ID type and the non-product stock codes.
+- All five SQL files were reviewed. The scoring direction and tie-breaks in `sql/04_rfm.sql` were traced against D10. A score of 5 always means the best result.
+- All 25 combinations of R and F scores were traced through the segment rules (D12). Each one falls into exactly one segment.
+- The heatmap exclusion was checked against D11. It removes every cell whose calendar month is December 2011, not only the December 2011 cohort.
+- The segment counts and percentages in F9 sum to 5,852 customers and 100%. This matches F1.
+- Chart 2 and Chart 5 were checked for correct rendering and legibility.
+- The `.gitignore` excludes `.venv/`, `data/raw/` and the database file. The commit history is incremental.
+
 ### Added
 - `sql/02_views.sql` is now built by the load script. The load prints a check of the view: 1,003,434 lines and £19,645,617.81.
 - `sql/03_overview.sql`. Headline figures, monthly revenue and revenue concentration. First use of CTEs and window functions.
