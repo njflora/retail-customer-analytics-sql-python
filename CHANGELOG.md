@@ -4,6 +4,9 @@ All notable changes to this project are recorded here. The newest entries are at
 
 ## 2026-10-11
 
+### Published
+- First push to GitHub, as a private repository: `njflora/retail-customer-analytics-sql-python`.
+
 ### Reviewed
 A full review was carried out before the first push to GitHub. It found no bugs or inconsistencies.
 - The schema in `sql/01_schema.sql` was checked for key and foreign key integrity.

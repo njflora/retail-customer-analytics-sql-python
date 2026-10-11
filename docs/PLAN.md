@@ -73,7 +73,7 @@ Online Retail II from the UCI Machine Learning Repository. It holds 1,067,371 in
 15. Build the charts listed in `docs/MOCKUP.md`.
 16. Test the working hypothesis.
 
-### Phase 5: Write-up (in progress)
+### Phase 5: Write-up (complete)
 
 17. Write the README. It states the question, the method and the headline finding.
 18. Push the repository to GitHub.
