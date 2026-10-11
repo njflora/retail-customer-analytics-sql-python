@@ -9,13 +9,16 @@ All notable changes to this project are recorded here. The newest entries are at
 - `sql/03_overview.sql`. Headline figures, monthly revenue and revenue concentration. First use of CTEs and window functions.
 - `docs/FINDINGS.md`. A log of results against the working hypothesis.
 - `sql/04_rfm.sql`. Recency, frequency and monetary value per customer, scored 1 to 5 with `NTILE(5)`.
+- `sql/05_cohorts.sql`. Monthly cohort retention, using `MIN() OVER (PARTITION BY customer_id)` for each customer's first month.
 
 ### Results
 - F2: the top 20% of customers produce 77.2% of revenue. Hypothesis 1 is supported.
 - F3: 72.4% of customers placed two or more orders. Hypothesis 2 is challenged, pending the cohort analysis.
+- F4 to F8 added from the cohort analysis. Hypothesis 2 is not supported. Customers return in seasonal cycles. Hypothesis 3 is supported.
 
 ### Decisions
 - D10 added. It records the RFM reference date, scoring direction and tie-break rules.
+- D11 added. The December 2009 and December 2011 cohorts are excluded from retention averages and the heatmap.
 
 ## 2026-10-07
 

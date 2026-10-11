@@ -156,3 +156,17 @@ Codes with an unusual format that are real products stay in. These include `DCGS
 - Only customers with a Customer ID are scored (D3).
 
 **Reason:** The reference date keeps recency in the timeline of the data. Using the current date would not change the scores, because every customer would shift by the same amount. However, the recency values themselves would be meaningless. The tie-break matters because about 1,600 customers placed exactly one order. Without it, NTILE would split them across scores 1 and 2 in an arbitrary order.
+
+---
+
+## D11. Exclude two cohorts from retention averages and the heatmap
+
+**Date agreed:** 11 October 2026
+
+**Finding:** The December 2009 cohort holds 951 customers. Most later cohorts hold between 100 and 450. Its retention is also much higher, at 35% to 42% in later months. The data starts on 1 December 2009. Every customer who was already buying before that date is therefore counted as "new" in December 2009. This is known as left-censoring. The December 2011 cohort covers only nine days and 28 customers.
+
+**Decision:** The cohort query still returns every cohort. The retention heatmap and all retention averages use the cohorts from January 2010 to November 2011 only.
+
+**Reason:** The December 2009 cohort describes existing customers, not new ones. Including it would overstate retention. The December 2011 cohort is too small and too short to measure.
+
+**Limitation:** Some customers in the early 2010 cohorts may also be existing customers who did not order in December 2009. Their effect is smaller and cannot be separated in this data.
