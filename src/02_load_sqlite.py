@@ -11,6 +11,7 @@ import pandas as pd
 CSV_PATH = Path("data/raw/online_retail_II.csv")
 DB_PATH = Path("data/retail.db")
 SCHEMA_PATH = Path("sql/01_schema.sql")
+VIEWS_PATH = Path("sql/02_views.sql")
 
 def pick_most_frequent(data, key, value):
     """For each key, return its most frequent value. Ties go to the most recent value."""
@@ -69,6 +70,7 @@ products.to_sql("products", conn, if_exists="append", index=False)
 invoices.to_sql("invoices", conn, if_exists="append", index=False)
 lines.to_sql("invoice_lines", conn, if_exists="append", index=False)
 conn.commit()
+conn.executescript(VIEWS_PATH.read_text())
 
 print("\nRow counts:")
 for table in ["customers", "products", "invoices", "invoice_lines"]:
@@ -82,4 +84,8 @@ print("\nRevenue in database:", db_revenue)
 print("Revenue in pandas:  ", csv_revenue)
 print("Match:", db_revenue == csv_revenue)
 
+
+clean = conn.execute(
+    "SELECT COUNT(*), ROUND(SUM(line_total), 2) FROM sales_clean").fetchone()
+print(f"\nsales_clean: {clean[0]:,} lines, revenue £{clean[1]:,}")
 conn.close()
