@@ -45,7 +45,9 @@ This log records each result as it is found. It tracks the working hypothesis in
 
 **Source:** `sql/05_cohorts.sql`. Cohorts from January 2010 to November 2011 (D11).
 
-On average, about 20% of a cohort is active in month 1. The figure is about 21% in month 3 and about 17% in month 12. In any single month, roughly four in five customers from a cohort do not order.
+On average, about 21% of a cohort is active in month 1. The figure is about 21% in month 3, 17% in month 6 and 18% in month 12. In any single month, roughly four in five customers from a cohort do not order.
+
+**Revised 11 October 2026:** These averages now exclude activity in December 2011, which held only nine days of data (see D11). The earlier figures were slightly lower.
 
 ---
 

@@ -52,28 +52,28 @@ Online Retail II from the UCI Machine Learning Repository. It holds 1,067,371 in
 3. Profile the data in `notebooks/00_first_look.ipynb`.
 4. Record the design decisions in `docs/DECISIONS.md`.
 
-### Phase 2: Database Build (in progress)
+### Phase 2: Database Build (complete)
 
 5. Write the schema in `sql/01_schema.sql`. There are four tables: `customers`, `products`, `invoices` and `invoice_lines`. Country is stored on `invoices` (see D8).
 6. Write the load script `src/02_load_sqlite.py`. It applies decisions D2 to D6.
 7. Validate the load. Row counts and revenue totals must match the CSV.
 8. Create the `sales_clean` view in `sql/02_views.sql`. This applies decision D1.
 
-### Phase 3: SQL Analysis
+### Phase 3: SQL Analysis (complete)
 
 9. Write aggregate queries. These cover monthly revenue, revenue by country, top products and the repeat purchase rate.
 10. Write the RFM query. A CTE calculates recency, frequency and monetary value for each customer.
 11. Score each RFM measure from 1 to 5 with the `NTILE(5)` window function.
 12. Write the cohort query. `MIN() OVER (PARTITION BY customer_id)` finds each customer's first purchase month. The query then counts active customers per cohort and month.
 
-### Phase 4: Python Analysis
+### Phase 4: Python Analysis (complete)
 
 13. Read the query results into pandas through SQLAlchemy.
 14. Map the RFM scores to named segments.
 15. Build the charts listed in `docs/MOCKUP.md`.
 16. Test the working hypothesis.
 
-### Phase 5: Write-up
+### Phase 5: Write-up (in progress)
 
 17. Write the README. It states the question, the method and the headline finding.
 18. Push the repository to GitHub.

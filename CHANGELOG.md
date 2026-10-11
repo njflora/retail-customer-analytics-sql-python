@@ -12,6 +12,7 @@ All notable changes to this project are recorded here. The newest entries are at
 - `sql/05_cohorts.sql`. Monthly cohort retention, using `MIN() OVER (PARTITION BY customer_id)` for each customer's first month.
 - `notebooks/01_analysis.ipynb`. Reads the SQL files through SQLAlchemy. Builds all six charts and the segment summary table.
 - `sql/05_cohorts.sql` Q2. Each customer's first return month, for the cumulative return curve.
+- Written narrative added to `notebooks/01_analysis.ipynb`: question, method, a note on each chart, findings, recommendations and limitations.
 
 ### Results
 - F2: the top 20% of customers produce 77.2% of revenue. Hypothesis 1 is supported.
