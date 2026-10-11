@@ -20,6 +20,9 @@ All notable changes to this project are recorded here. The newest entries are at
 - D10 added. It records the RFM reference date, scoring direction and tie-break rules.
 - D11 added. The December 2009 and December 2011 cohorts are excluded from retention averages and the heatmap.
 
+### Changed
+- `docs/MOCKUP.md`: Chart 6 changed from an average retention curve to a cumulative return curve. The monthly measure understated loyalty (see F4 and F5). Chart 5 now notes the cohorts excluded by D11.
+
 ## 2026-10-07
 
 ### Added
